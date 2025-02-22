@@ -2,42 +2,27 @@
 
 public class Result
 {
-    public bool IsSuccess { get; }
-    public bool IsFailure => !IsSuccess;
-    public string Error { get; }
+    public bool IsSuccessful => Errors.Count == 0;
+    public bool IsFailed => !IsSuccessful;
 
-    protected Result(bool isSuccess, string error)
+    public string ErrorMessages => Errors.Select(e => e.Message).Aggregate((a, b) => $"{a}, {b}");
+
+    public List<Error> Errors { get; protected set; }
+
+    protected Result(List<Error> errors)
     {
-        IsSuccess = isSuccess;
-        Error = error;
+        Errors = [];
+        Errors = errors;
     }
 
-    public static Result Success() => new Result(true, string.Empty);
-
-    public static Result Failure(string error)
+    public static Result Success()
     {
-        if (string.IsNullOrWhiteSpace(error))
-            throw new InvalidOperationException("Error message cannot be empty.");
-
-        return new Result(false, error);
-    }
-}
-
-public class Result<T> : Result
-{
-    public T Value { get; }
-
-    private Result(T value) : base(true, string.Empty)
-    {
-        Value = value;
+        return new Result([]);
     }
 
-    private Result(string error) : base(false, error)
+    public static Result Fail(Error error)
     {
-        Value = default!;
+        var validErrors = new List<Error> { error };
+        return new Result(validErrors);
     }
-
-    public static Result<T> Success(T value) => new Result<T>(value);
-
-    public new static Result<T> Failure(string error) => new Result<T>(error);
 }

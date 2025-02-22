@@ -2,5 +2,11 @@
 
 public interface ISectionProcessor
 {
-    Task<Dictionary<string, object>> ProcessComplexValueAsync(object complexValue);
+    /// <summary>
+    /// Process property type (complex type)
+    /// </summary>
+    /// <param name="complexValue"></param>
+    /// <param name="environment"></param>
+    /// <returns></returns>
+    Dictionary<string, object> ProcessComplexValue(object complexValue, string environment);
 }

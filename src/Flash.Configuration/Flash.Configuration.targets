@@ -4,13 +4,13 @@
         <PathToDll Include="$(MSBuildProjectDirectory)\$(OutputPath)\$(AssemblyName).dll"/>
     </ItemGroup>
     <Target Name="UpdateConfigFilesAfterBuild" AfterTargets="PostBuildEvent">
-        <Message Text="Start configuration files..." Importance="high" />
+        <Message Text="Start updating configuration files..." Importance="high" />
         <Message Text="The path to the assembly is '@(PathToDll)'" Importance="high" />
         <Error Condition="!Exists('@(PathToDll)')"
                Text="Flash.Configuration tool can not find library '($(AssemblyName).dll)'"
                File="@(PathToDll)"/>
-        <Exec Command='"$(MSBuildThisFileDirectory)tools\Flash.Configuration.exe" --proj_path="$(MSBuildProjectDirectory)" --output_path="$(OutputPath)\" --assembly_name="$(AssemblyName).dll" --verbose=false'
-              Condition="Exists('@(PathToDll)')"/>
+        <Exec Command='"$(MSBuildThisFileDirectory)tools\Flash.Configuration.exe" --proj_path="$(MSBuildProjectDirectory)" --output_path="$(OutputPath)\" --assembly_name="$(AssemblyName).dll"'
+              Condition="Exists('@(PathToDll)')" ConsoleToMsBuild="true" IgnoreStandardErrorWarningFormat="true" UseCommandProcessor="false" LogStandardErrorAsError="false" EchoOff="true"/>
         <Message Text="Finish updating configuration files" Importance="high" />
     </Target>
 </Project>

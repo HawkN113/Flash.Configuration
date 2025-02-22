@@ -1,0 +1,11 @@
+﻿using Flash.Configuration.Core;
+
+namespace Flash.Configuration.WpfApp.Configuration;
+
+[FlashConfig("Wpf-CommonConfig")]
+public class CommonConfig
+{
+    [FlashProperty("Property1")]
+    [FlashValue("Property1_value")]
+    public string Property1 { get; set; } = "Default value";
+}

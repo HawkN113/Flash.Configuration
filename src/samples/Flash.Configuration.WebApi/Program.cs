@@ -1,19 +1,23 @@
+using Flash.Configuration.WebApi.Configuration;
+using Flash.Configuration.WebApi.Models;
+using Microsoft.Extensions.Options;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-var app = builder.Build();
+builder.Services.Configure<Connections>(builder.Configuration.GetSection("Connections"));
 
-// Configure the HTTP request pipeline.
+var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+using var scope = app.Services.CreateScope();
+var connections = scope.ServiceProvider.GetRequiredService<IOptions<Connections>>().Value;
+connections.UserService.GetFullUrl();
 app.UseHttpsRedirection();
 
 var summaries = new[]
@@ -36,9 +40,4 @@ app.MapGet("/weatherforecast", () =>
     .WithName("GetWeatherForecast")
     .WithOpenApi();
 
-app.Run();
-
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}
+await app.RunAsync();

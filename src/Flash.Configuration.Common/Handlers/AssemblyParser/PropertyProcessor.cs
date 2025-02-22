@@ -3,27 +3,90 @@ using Flash.Configuration.Common.Handlers.AssemblyParser.Abstraction;
 using Flash.Configuration.Core;
 namespace Flash.Configuration.Common.Handlers.AssemblyParser;
 
-public sealed class PropertyProcessor(ISectionProcessor sectionProcessor) : IPropertyProcessor
+internal sealed class PropertyProcessor(ISectionProcessor sectionProcessor) : IPropertyProcessor
 {
-    public async Task ProcessPropertyAsync(object instance, PropertyInfo property,
-        Dictionary<string, object> configValues)
+    public void ProcessProperty(object instance, PropertyInfo property,
+        Dictionary<string, object> configValues, string environment)
     {
-        var attribute = property.GetCustomAttribute<FlashPropertyAttribute>();
-        var attrName = attribute!.DisplayName ?? property.Name;
-        var value = property.GetValue(instance);
-        if (value is null) return;
+        ArgumentNullException.ThrowIfNull(instance);
+        ArgumentNullException.ThrowIfNull(property);
+        ArgumentNullException.ThrowIfNull(configValues);
+        ArgumentNullException.ThrowIfNull(environment);
 
-        if (property.PropertyType.IsEnum)
+        var attribute = property.GetCustomAttribute<FlashPropertyAttribute>();
+        if (attribute is null) return;
+
+        var attrName = attribute.DisplayName ?? property.Name;
+        var value = property.GetValue(instance);
+
+        var attValue = property.GetCustomAttributes<FlashValueAttribute>()
+            .FirstOrDefault(a => string.Equals(a.Environment, environment, StringComparison.OrdinalIgnoreCase) ||
+                                 (string.IsNullOrEmpty(a.Environment) && string.Equals(environment, "None",
+                                     StringComparison.OrdinalIgnoreCase)));
+
+        var isValueIgnored = property.GetCustomAttributes<FlashValueIgnoreAttribute>().Any(
+            a => string.Equals(a.Environment, environment, StringComparison.OrdinalIgnoreCase) ||
+                 (string.IsNullOrEmpty(a.Environment) &&
+                  string.Equals(environment, "None", StringComparison.OrdinalIgnoreCase)));
+
+        if (isValueIgnored) return;
+        if (attValue is not null)
         {
-            var enumAttribute = property.GetCustomAttribute<FlashEnumAttribute>();
-            var enumStringAttribute = property.PropertyType.GetCustomAttribute<FlashEnumStringAttribute>();
-            if (enumStringAttribute is not null && enumAttribute is null)
-            {
-                value = Enum.GetName(property.PropertyType, value)!;
-            }
+            ProcessDefaultProperty(property, configValues, attValue, attrName);
+            return;
         }
 
-        configValues[attrName] =
-            attribute.IsComplex ? await sectionProcessor.ProcessComplexValueAsync(value) : value;
+        ProcessExtendedProperty(property, configValues, environment, value, attribute, attrName);
+    }
+
+    internal void ProcessDefaultProperty(PropertyInfo property,
+        Dictionary<string, object> configValues,
+        FlashValueAttribute attValue,
+        string attrName)
+    {
+        if (property.PropertyType.IsEnum && !property.IsDefined(typeof(FlashEnumAttribute)) &&
+            property.PropertyType.IsDefined(typeof(FlashEnumStringAttribute)))
+        {
+            if (Enum.GetName(property.PropertyType, attValue.DefaultValue!) is { } enumName)
+                configValues[attrName] = enumName;
+            return;
+        }
+
+        configValues[attrName] = attValue.DefaultValue!;
+    }
+
+    internal void ProcessExtendedProperty(PropertyInfo property,
+        Dictionary<string, object> configValues,
+        string environment, 
+        object? value,
+        FlashPropertyAttribute attribute,
+        string attrName)
+    {
+        if (property.PropertyType.IsEnum &&
+            !property.IsDefined(typeof(FlashEnumAttribute)) &&
+            property.PropertyType.IsDefined(typeof(FlashEnumStringAttribute)))
+            value = Enum.GetName(property.PropertyType, value!);
+
+        switch (value)
+        {
+            case null:
+                return;
+
+            case IEnumerable<object> collection when attribute.IsComplex:
+            {
+                var processedCollection = collection
+                    .Select(item => sectionProcessor.ProcessComplexValue(item, environment)).ToList();
+                configValues[attrName] = processedCollection;
+                break;
+            }
+            case IEnumerable<object> collection:
+                configValues[attrName] = collection.ToList();
+                break;
+
+            default:
+                configValues[attrName] =
+                    attribute.IsComplex ? sectionProcessor.ProcessComplexValue(value, environment) : value;
+                break;
+        }
     }
 }

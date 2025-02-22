@@ -1,10 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <FileVersion>1.0.0.0</FileVersion>
+        <FileVersion>8.0.0.0</FileVersion>
         <Copyright>Copyright © 2025 Nikolay Selyutin (HawkN113)</Copyright>
         <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
         <GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
@@ -12,14 +11,17 @@
         <GenerateAssemblyInformationalVersionAttribute>false</GenerateAssemblyInformationalVersionAttribute>
         <Optimize>true</Optimize>
         <PublicSign>false</PublicSign>
+        <TargetFramework>net8.0</TargetFramework>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
       <DebugType>embedded</DebugType>
+      <DocumentationFile>bin\Debug\Flash.Configuration.Core.xml</DocumentationFile>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
       <DebugType>embedded</DebugType>
+      <DocumentationFile>bin\Release\Flash.Configuration.Core.xml</DocumentationFile>
     </PropertyGroup>
 
 </Project>

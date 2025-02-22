@@ -2,5 +2,10 @@
 
 public interface IAssemblyProcessor
 {
-    Task<Dictionary<string, Dictionary<string, object>>> ParseAssemblyAsync(string assemblyPath);
+    /// <summary>
+    /// Get assembly data using full path to the assembly (.dll)
+    /// </summary>
+    /// <param name="assemblyPath"></param>
+    /// <returns></returns>
+    Dictionary<string, Dictionary<string, object>> ParseAssembly(string assemblyPath);
 }

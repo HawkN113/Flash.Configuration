@@ -1,18 +1,14 @@
 ﻿using System.Reflection;
-using System.Text.RegularExpressions;
 using Flash.Configuration.Common.Handlers.CommandLineParser.Abstraction;
 using Flash.Configuration.Common.Handlers.CommandLineParser.Attributes;
 namespace Flash.Configuration.Common.Handlers.CommandLineParser;
 
-public partial class CommandProcessor : ICommandProcessor
+internal sealed class CommandProcessor : ICommandProcessor
 {
-    [GeneratedRegex(@"--(?<keyId>\w+)(?:[ =](?<value>.+))?", RegexOptions.IgnoreCase | RegexOptions.Compiled)]
-    private partial Regex ArgsRegex();
-
     public async Task<T> ParseArgsAsync<T>(string[] args) where T : class, new()
     {
         var result = new Dictionary<string, string>();
-        var regex = ArgsRegex();
+        var regex = Helpers.RegExpressions.ArgsRegex();
         foreach (var arg in args)
         {
             var match = regex.Match(arg);
@@ -29,7 +25,6 @@ public partial class CommandProcessor : ICommandProcessor
     {
         var options = new T();
         var type = typeof(T);
-
         foreach (var prop in type.GetProperties())
         {
             var aliasAttr = prop.GetCustomAttribute<PropertyAliasAttribute>();

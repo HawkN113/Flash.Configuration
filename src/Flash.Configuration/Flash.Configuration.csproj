@@ -2,10 +2,9 @@
 
     <PropertyGroup>
         <OutputType>Exe</OutputType>
-        <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <FileVersion>1.0.0.0</FileVersion>
+        <FileVersion>8.0.0.0</FileVersion>
         <Copyright>Copyright © 2025 Nikolay Selyutin (HawkN113)</Copyright>
         <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
         <GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
@@ -13,23 +12,27 @@
         <GenerateAssemblyInformationalVersionAttribute>false</GenerateAssemblyInformationalVersionAttribute>
         <Optimize>true</Optimize>
         <PublicSign>false</PublicSign>
+        <TargetFramework>net8.0</TargetFramework>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
       <DebugType>embedded</DebugType>
+      <DocumentationFile>bin\Debug\Flash.Configuration.xml</DocumentationFile>
+      <WarningsAsErrors>;NU1605</WarningsAsErrors>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
       <DebugType>embedded</DebugType>
+      <DocumentationFile>bin\Release\Flash.Configuration.xml</DocumentationFile>
+      <WarningsAsErrors>;NU1605</WarningsAsErrors>
     </PropertyGroup>
 
     <ItemGroup>
         <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.1" />
         <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.1" />
-        <PackageReference Include="Microsoft.Extensions.Http" Version="8.0.1" />
     </ItemGroup>
     <ItemGroup>
-      <ProjectReference Include="..\Flash.Configuration.Common\Flash.Configuration.Common.csproj" />
+      <ProjectReference Include="..\Flash.Configuration.Updater\Flash.Configuration.Updater.csproj" />
     </ItemGroup>
     <ItemGroup>
       <None Update="Flash.Configuration.targets">
