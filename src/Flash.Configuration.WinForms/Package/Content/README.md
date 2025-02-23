@@ -16,7 +16,7 @@ Flash.Configuration.WinForms is a configuration management tool that enables dyn
 
 ### Installation
 
-To add the latest [NuGet package](https://www.nuget.org/packages/Flash.Configuration.WinForms):
+To add the latest NuGet package:
 ```bash
 Install-Package Flash.Configuration.WinForms --version 8.0.0
 ```
@@ -99,4 +99,4 @@ public class ConnectionStrings
 
 ### Advanced usage
 
-⚠️ **Warning** The advanced complex sample is available with the [link](https://github.com/HawkN113/Flash.Configuration/main/docs/samples/advanced_sample.md) with all classes and configuration files.
+⚠️ **Warning** The advanced complex sample is available with the [link](https://github.com/HawkN113/Flash.Configuration/blob/main/docs/samples/advanced_sample.md) with all classes and configuration files.
