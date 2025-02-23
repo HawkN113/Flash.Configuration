@@ -1,6 +1,6 @@
 # Flash.Configuration
 
-| ![Flash.Configuration](docs/img/flash.configuration.png) | Flash.Configuration is a configuration management tool that enables dynamic parsing and updating of configuration settings, including updating configuration files after build. |
+| ![Flash.Configuration](docs/img/Flash.Configuration.png) | Flash.Configuration is a configuration management tool that enables dynamic parsing and updating of configuration settings, including updating configuration files after build. |
 |----------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 
 ## Features
