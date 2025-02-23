@@ -1,0 +1,11 @@
+@Flash.Configuration.WebApi_AOT_HostAddress = http://localhost:5199
+
+GET {{Flash.Configuration.WebApi_AOT_HostAddress}}/todos/
+Accept: application/json
+
+###
+
+GET {{Flash.Configuration.WebApi_AOT_HostAddress}}/todos/1
+Accept: application/json
+
+###

@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+    <metadata>
+        <id>Flash.Configuration.Wpf</id>
+        <version>8.0.0</version>
+        <title>Flash.Configuration.Wpf</title>
+        <authors>Nikolay Selyutin (HawkN113)</authors>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>Flash.Configuration.Wpf is a configuration management tool that enables dynamic parsing and updating of configuration settings, including updating configuration files after build.</description>
+        <summary>A flexible and efficient library for handling configurations across different environments.</summary>
+        <tags>.net8 configuration settings config options wpf</tags>
+        <repository type="git" url="https://github.com/HawkN113/Flash.Configuration" branch="main" />
+        <projectUrl>https://github.com/HawkN113/Flash.Configuration</projectUrl>
+        <license type="expression">MIT</license>
+        <icon>content\Flash.Configuration.ico.png</icon>
+        <readme>content\README.md</readme>
+        <language>en-GB</language>
+        <releaseNotes>
+            - Added support for .NET 8.0;
+            - Added support WPF Applications.
+        </releaseNotes>
+        <copyright>Copyright © 2025 Nikolay Selyutin (HawkN113)</copyright>
+        <dependencies>
+            <group targetFramework="net8.0-windows10.0.19041" />
+        </dependencies>
+    </metadata>
+    <files>
+        <file src="bin\Release\net8.0-windows10.0.19041\Flash.Configuration.Core.dll" target="lib\net8.0-windows10.0.19041\Flash.Configuration.Core.dll" />
+        <file src="bin\Release\net8.0-windows10.0.19041\Flash.Configuration.Core.xml" target="lib\net8.0-windows10.0.19041\Flash.Configuration.Core.xml" />
+        <file src="bin\Release\net8.0-windows10.0.19041\**\*" target="build\net8.0-windows10.0.19041\tools" exclude="bin\Release\net8.0-windows10.0.19041\Package\**\*" />
+        <file src="bin\Release\net8.0-windows10.0.19041\Package\Content\Flash.Configuration.ico.png" target="content\Flash.Configuration.ico.png" />
+        <file src="Flash.Configuration.Wpf.targets" target="build\net8.0-windows10.0.19041\Flash.Configuration.Wpf.targets" />
+        <file src="Package\Content\README.md" target="content\README.md" />
+    </files>
+</package>
