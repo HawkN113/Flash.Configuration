@@ -39,6 +39,7 @@ The package can work with the following project types:
 ### Usage
 
 - Create a class for configuration
+  
   **Sample**
 ```csharp
 [FlashOrder(4)]

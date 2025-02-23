@@ -66,6 +66,7 @@ dotnet add package Flash.Configuration.WinForms --version 8.0.0
 ### Usage
 
 - Create a class for configuration
+
 **Sample**
 ```csharp
 [FlashOrder(4)]
@@ -136,6 +137,7 @@ public class ConnectionStrings
     - Staging - should be applied the changes into file 'appSettings.Staging.json' <br/>
     - Production - should be applied the changes into file 'appSettings.Production.json'
     - You can use an other configuration name, i.e: `Test`, `Qa`
+
    **Samples**
    ```csharp
    [FlashConfig("ConnectionStrings", environment: "Development")]
@@ -148,6 +150,7 @@ public class ConnectionStrings
   Main section with name `ConnectionStrings` will be available for all environments (will be updated only `appsettings.json`)
 
 - `FlashProperty` marks a property in configuration section for the environments.
+
    **Samples**
    ```csharp
    [FlashProperty("DefaultConnection")]
@@ -159,6 +162,7 @@ public class ConnectionStrings
   The property has the name `MiddlewareSettings` will be available for all environments and use the complex configuration. In the case, should use attribute `FlashSection`
 
 - `FlashSection` marks the complex configuration for the property in configuration section.
+
   **Samples**
    ```csharp
    [FlashSection]
@@ -171,6 +175,7 @@ public class ConnectionStrings
   The complex section will be available for the property
 
 - `FlashValue` allows set the default property for the property for the environments.
+
   **Samples**
    ```csharp
    [FlashValue("Server=dev.localhost;Database=dev_db;User Id=dev_user;Password=******;", environment: "Development")]
@@ -178,6 +183,7 @@ public class ConnectionStrings
    The value will be available on `Development` environment.
 
 - `FlashValueIgnore` allows to ignore the default property for the property for the environments.
+
   **Samples**
    ```csharp
    [FlashValueIgnore("Development")]
@@ -185,12 +191,14 @@ public class ConnectionStrings
    The value will be ignored on `Development` environment.
 
 - `FlashIgnore` allows to ignore the section/property/field/class on the environments. Available for all components
+
   **Samples**
    ```csharp
    [FlashIgnore]
    ```
 
 - `FlashField` marks a field in configuration section for the environments.
+
   **Samples**
    ```csharp
    [FlashField("DefaultConnection")]
@@ -202,6 +210,7 @@ public class ConnectionStrings
    The field has the name `MiddlewareSettings` will be available for all environments and use the complex configuration.
 
 - `FlashOrder` allows to set order of a component in configuration section for the environments.
+
   **Samples**
    ```csharp
    [FlashOrder(1)]
