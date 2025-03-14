@@ -3,7 +3,7 @@
   "profiles": {
     "Flash.Configuration.Wpf": {
       "commandName": "Project",
-      "commandLineArgs": "--proj_path=\"C:\\Experiments\\Flash.Configuration\\src\\samples\\Flash.Configuration.WpfApp\" --output_path=\"bin\\Debug\\net8.0-windows\" --assembly_name=\"Flash.Configuration.WpfApp.dll\"",
+      "__commandLineArgs": "--proj_path=\"C:\\Experiments\\Flash.Configuration\\src\\samples\\Flash.Configuration.WpfApp\" --output_path=\"bin\\Debug\\net8.0-windows\" --assembly_name=\"Flash.Configuration.WpfApp.dll\"",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

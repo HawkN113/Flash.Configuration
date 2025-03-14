@@ -3,7 +3,7 @@
   "profiles": {
     "Flash.Configuration.WinForms": {
       "commandName": "Project",
-      "commandLineArgs": "--proj_path=\"C:\\Experiments\\Flash.Configuration\\src\\samples\\Flash.Configuration.WinFormsApp\" --output_path=\"bin\\Debug\\net8.0-windows10.0.19041\" --assembly_name=\"Flash.Configuration.WinFormsApp.dll\"",
+      "__commandLineArgs": "--proj_path=\"C:\\Experiments\\Flash.Configuration\\src\\samples\\Flash.Configuration.WinFormsApp\" --output_path=\"bin\\Debug\\net8.0-windows10.0.19041\" --assembly_name=\"Flash.Configuration.WinFormsApp.dll\"",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

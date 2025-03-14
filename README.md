@@ -1,5 +1,10 @@
 # Flash.Configuration
 
+![Nuget](https://img.shields.io/nuget/v/Flash.Configuration?label=Flash.Configuration)
+![Nuget](https://img.shields.io/nuget/v/Flash.Configuration.wpf?label=Flash.Configuration.Wpf)
+![Nuget](https://img.shields.io/nuget/v/Flash.Configuration.winforms?label=Flash.Configuration.Winforms)
+![GitHub license](https://img.shields.io/github/license/HawkN113/Flash.Configuration)
+
 | ![Flash.Configuration](docs/img/Flash.Configuration.png) | Flash.Configuration is a configuration management tool that enables dynamic parsing and updating of configuration settings, including updating configuration files after build. |
 |----------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 

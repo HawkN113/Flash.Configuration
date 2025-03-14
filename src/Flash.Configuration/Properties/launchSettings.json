@@ -3,7 +3,7 @@
   "profiles": {
     "Flash.Configuration": {
       "commandName": "Project",
-      "commandLineArgs": "--proj_path=\"C:\\Experiments\\Flash.Configuration\\src\\samples\\Flash.Configuration.WebApi\" --output_path=\"bin\\Debug\\net8.0\" --assembly_name=\"Flash.Configuration.WebApi.dll\"",
+      "__commandLineArgs": "--proj_path=\"C:\\Experiments\\Flash.Configuration\\src\\samples\\Flash.Configuration.WebApi\" --output_path=\"bin\\Debug\\net8.0\" --assembly_name=\"Flash.Configuration.WebApi.dll\"",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
