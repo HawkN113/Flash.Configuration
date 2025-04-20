@@ -227,3 +227,9 @@ public class ConnectionStrings
 ## License
 
 This project is licensed under the MIT License.
+
+---
+
+## References
+
+[Supercharge Your .NET Configuration with Flash.Configuration](https://medium.com/@nselyutin/supercharge-your-net-configuration-with-flash-configuration-0a4c29d58246)
